@@ -22,7 +22,8 @@ from timm.utils import NativeScaler
 from datasets import build_dataset
 from engine import train_one_epoch, evaluate
 from samplers import RASampler
-from models import *
+#from models import *
+from cmt import *
 import utils
 
 
@@ -218,12 +219,7 @@ def main(args):
 
     print(f"Creating model: {args.model}")
 
-    model = eval(args.model)(
-        num_classes=args.nb_classes,
-        drop_rate=args.drop,
-        drop_path_rate=args.drop_path,
-        qk_scale=args.qk_scale_factor
-    )
+    model = eval(args.model)()
 
     model.to(device)
 
